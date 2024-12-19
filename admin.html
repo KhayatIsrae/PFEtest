@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,11 +20,14 @@
             height: 200px;
             position: relative;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .header img {
-            width: 100%;
-            height: 100%;
+            width: 900px;
+            height: 150px;
             object-fit: cover;
             object-position: center;
         }
@@ -105,7 +109,10 @@
             font-weight: bold;
         }
 
-        input, select, textarea, button {
+        input,
+        select,
+        textarea,
+        button {
             width: 100%;
             padding: 10px;
             margin-bottom: 16px;
@@ -151,12 +158,12 @@
             align-items: center;
         }
 
-        .matiere-item + .matiere-item {
+        .matiere-item+.matiere-item {
             margin-top: 10px;
         }
-
     </style>
 </head>
+
 <body>
     <!-- Header Section -->
     <div class="header">
@@ -177,8 +184,8 @@
             <div class="accueil-text">
                 <h2>Bienvenue dans l'interface de gestion</h2>
                 <p>
-                    Cette plateforme vous permet de gérer facilement les différentes filières, 
-                    les professeurs, et les étudiants. Naviguez entre les onglets ci-dessus pour accéder 
+                    Cette plateforme vous permet de gérer facilement les différentes filières,
+                    les professeurs, et les étudiants. Naviguez entre les onglets ci-dessus pour accéder
                     aux fonctionnalités.
                 </p>
             </div>
@@ -340,4 +347,5 @@
         updateFiliereOptions();
     </script>
 </body>
+
 </html>
