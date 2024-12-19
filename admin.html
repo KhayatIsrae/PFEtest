@@ -3,59 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Interface de Gestion</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            background-color: white;
+            color: #3E5879;
         }
 
-        .container {
-            max-width: 900px;
-            margin: auto;
-            padding: 20px;
+        /* Header */
+        .header {
+            width: 100%;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
         }
 
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 24px;
+        .header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
         }
 
+        /* Tabs */
         .tabs {
             display: flex;
-            margin-bottom: 20px;
-            cursor: pointer;
+            background-color: #D8C4B6;
+            color: #3E5879;
+            font-weight: bold;
+            border-bottom: 2px solid #3E5879;
         }
 
         .tab {
             flex: 1;
             text-align: center;
-            padding: 10px;
-            background-color: #f4f4f4;
-            border: 1px solid #ccc;
-            border-bottom: none;
-            font-weight: bold;
+            padding: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .tab.active {
-            background-color: #fff;
-            border-bottom: 1px solid #fff;
+            background-color: #3E5879;
+            color: #D8C4B6;
         }
 
+        .tab:hover {
+            background-color: #CBB29D;
+        }
+
+        /* Tab Content */
         .tab-content {
             display: none;
-            border: 1px solid #ccc;
             padding: 20px;
-            background-color: #fff;
         }
 
         .tab-content.active {
             display: block;
         }
 
+        /* Accueil Section */
+        .accueil-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 40px auto;
+            width: 80%;
+            background-color: #3E5879;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .accueil-text {
+            flex: 1;
+            color: white;
+        }
+
+        .accueil-text h2 {
+            color: #D8C4B6;
+            margin-bottom: 20px;
+        }
+
+        .accueil-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .accueil-image img {
+            max-width: 90%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* Form Elements */
         label {
             display: block;
             margin-bottom: 8px;
@@ -64,21 +107,24 @@
 
         input, select, textarea, button {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             margin-bottom: 16px;
             border: 1px solid #ccc;
             border-radius: 4px;
+            box-sizing: border-box;
         }
 
         button {
-            background-color: #007BFF;
+            background-color: #3E5879;
             color: white;
             border: none;
             cursor: pointer;
+            padding: 10px 20px;
+            font-size: 16px;
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #2C3E50;
         }
 
         .multi-select {
@@ -108,94 +154,105 @@
         .matiere-item + .matiere-item {
             margin-top: 10px;
         }
+
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Admin Dashboard</h1>
-        
-        <!-- Tabs -->
-        <div class="tabs">
-            <div class="tab active" data-tab="tab-accueil">Accueil</div>
-            <div class="tab" data-tab="tab-filiere">Gestion des Filières</div>
-            <div class="tab" data-tab="tab-prof">Gestion des Professeurs</div>
-            <div class="tab" data-tab="tab-student">Gestion des Étudiants</div>
-        </div>
+    <!-- Header Section -->
+    <div class="header">
+        <img src="unnamed.jpg" alt="Header Image">
+    </div>
 
-        <!-- Tab Content -->
-        <!-- Accueil Tab -->
-        <div id="tab-accueil" class="tab-content active">
-            <h2>Bienvenue sur le Tableau de Bord</h2>
-            <p>Utilisez ce tableau de bord pour gérer les filières, les professeurs et les étudiants. Sélectionnez une option dans le menu ci-dessus pour commencer.</p>
-            <p>Vous pouvez ajouter des matières aux filières, attribuer des professeurs aux matières, et bien plus encore.</p>
-        </div>
+    <!-- Tabs -->
+    <div class="tabs">
+        <div class="tab active" data-tab="tab-accueil">Accueil</div>
+        <div class="tab" data-tab="tab-filiere">Gestion des Filières</div>
+        <div class="tab" data-tab="tab-prof">Gestion des Professeurs</div>
+        <div class="tab" data-tab="tab-student">Gestion des Étudiants</div>
+    </div>
 
-        <!-- Gestion des Filières -->
-        <div id="tab-filiere" class="tab-content">
-            <h2>Gérer les Filières</h2>
-            <label for="filiere-name">Nom de la Filière</label>
-            <input type="text" id="filiere-name" placeholder="Saisir le nom de la filière" required>
-
-            <label for="filiere-students">Nombre d'Étudiants</label>
-            <input type="number" id="filiere-students" placeholder="Nombre d'étudiants" required>
-
-            <label for="filiere-matieres">Matières</label>
-            <div id="filiere-matieres-container">
-                <input type="text" id="matiere-name" placeholder="Ajouter une matière" required>
-                <button type="button" onclick="addMatiere()">Ajouter Matière</button>
+    <!-- Tab Content -->
+    <div id="tab-accueil" class="tab-content active">
+        <div class="accueil-container">
+            <div class="accueil-text">
+                <h2>Bienvenue dans l'interface de gestion</h2>
+                <p>
+                    Cette plateforme vous permet de gérer facilement les différentes filières, 
+                    les professeurs, et les étudiants. Naviguez entre les onglets ci-dessus pour accéder 
+                    aux fonctionnalités.
+                </p>
             </div>
-            <ul id="matiere-list"></ul>
-
-            <button type="button" onclick="addFiliere()">Ajouter la Filière</button>
+            <div class="accueil-image">
+                <img src="WhatsApp Image 2024-12-19 at 22.18.48_e99d7042.jpg" alt="Accueil Image">
+            </div>
         </div>
+    </div>
 
-        <!-- Gestion des Professeurs -->
-        <div id="tab-prof" class="tab-content">
-            <h2>Gérer les Professeurs</h2>
-            <label for="prof-name">Nom du Professeur</label>
-            <input type="text" id="prof-name" placeholder="Saisir le nom complet" required>
+    <!-- Gestion des Filières -->
+    <div id="tab-filiere" class="tab-content">
+        <h2>Gérer les Filières</h2>
+        <label for="filiere-name">Nom de la Filière</label>
+        <input type="text" id="filiere-name" placeholder="Saisir le nom de la filière" required>
 
-            <label for="prof-email">Adresse Mail</label>
-            <input type="email" id="prof-email" placeholder="Saisir l'adresse email" required>
+        <label for="filiere-students">Nombre d'Étudiants</label>
+        <input type="number" id="filiere-students" placeholder="Nombre d'étudiants" required>
 
-            <label for="prof-password">Mot de Passe</label>
-            <input type="password" id="prof-password" placeholder="Créer un mot de passe" required>
-
-            <label for="prof-filieres">Filières Enseignées</label>
-            <select id="prof-filieres" required>
-                <!-- Filières dynamically populated here -->
-            </select>
-
-            <label for="prof-matieres">Matières Enseignées</label>
-            <select id="prof-matieres" required>
-                <!-- Matières dynamically populated here -->
-            </select>
-
-            <label for="prof-phone">Numéro de Téléphone</label>
-            <input type="text" id="prof-phone" placeholder="Saisir le numéro de téléphone" required>
-
-            <button type="button" onclick="addProf()">Ajouter le Professeur</button>
+        <label for="filiere-matieres">Matières</label>
+        <div id="filiere-matieres-container">
+            <input type="text" id="matiere-name" placeholder="Ajouter une matière" required>
+            <button type="button" onclick="addMatiere()">Ajouter Matière</button>
         </div>
+        <ul id="matiere-list"></ul>
 
-        <!-- Gestion des Étudiants -->
-        <div id="tab-student" class="tab-content">
-            <h2>Gérer les Étudiants</h2>
-            <label for="student-name">Nom Complet</label>
-            <input type="text" id="student-name" placeholder="Saisir le nom complet" required>
+        <button type="button" onclick="addFiliere()">Ajouter la Filière</button>
+    </div>
 
-            <label for="student-filiere">Filière</label>
-            <select id="student-filiere" required>
-                <!-- Filières dynamically populated here -->
-            </select>
+    <!-- Gestion des Professeurs -->
+    <div id="tab-prof" class="tab-content">
+        <h2>Gérer les Professeurs</h2>
+        <label for="prof-name">Nom du Professeur</label>
+        <input type="text" id="prof-name" placeholder="Saisir le nom complet" required>
 
-            <label for="student-email">Adresse Mail</label>
-            <input type="email" id="student-email" placeholder="Créer une adresse email" required>
+        <label for="prof-email">Adresse Mail</label>
+        <input type="email" id="prof-email" placeholder="Saisir l'adresse email" required>
 
-            <label for="student-password">Mot de Passe</label>
-            <input type="password" id="student-password" placeholder="Créer un mot de passe" required>
+        <label for="prof-password">Mot de Passe</label>
+        <input type="password" id="prof-password" placeholder="Créer un mot de passe" required>
 
-            <button type="button" onclick="addStudent()">Ajouter l'Étudiant</button>
-        </div>
+        <label for="prof-filieres">Filières Enseignées</label>
+        <select id="prof-filieres" required>
+            <!-- Filières dynamically populated here -->
+        </select>
+
+        <label for="prof-matieres">Matières Enseignées</label>
+        <select id="prof-matieres" required>
+            <!-- Matières dynamically populated here -->
+        </select>
+
+        <label for="prof-phone">Numéro de Téléphone</label>
+        <input type="text" id="prof-phone" placeholder="Saisir le numéro de téléphone" required>
+
+        <button type="button" onclick="addProf()">Ajouter le Professeur</button>
+    </div>
+
+    <!-- Gestion des Étudiants -->
+    <div id="tab-student" class="tab-content">
+        <h2>Gérer les Étudiants</h2>
+        <label for="student-name">Nom Complet</label>
+        <input type="text" id="student-name" placeholder="Saisir le nom complet" required>
+
+        <label for="student-filiere">Filière</label>
+        <select id="student-filiere" required>
+            <!-- Filières dynamically populated here -->
+        </select>
+
+        <label for="student-email">Adresse Mail</label>
+        <input type="email" id="student-email" placeholder="Créer une adresse email" required>
+
+        <label for="student-password">Mot de Passe</label>
+        <input type="password" id="student-password" placeholder="Créer un mot de passe" required>
+
+        <button type="button" onclick="addStudent()">Ajouter l'Étudiant</button>
     </div>
 
     <script>
@@ -268,40 +325,18 @@
         function updateFiliereOptions() {
             const profSelect = document.getElementById('prof-filieres');
             const studentSelect = document.getElementById('student-filiere');
-            profSelect.innerHTML = '';
-            studentSelect.innerHTML = '';
-
-            filieres.forEach(filiere => {
-                const option = document.createElement('option');
-                option.value = filiere.name;
-                option.textContent = filiere.name;
-                profSelect.appendChild(option);
-
-                const studentOption = option.cloneNode(true);
-                studentSelect.appendChild(studentOption);
+            [profSelect, studentSelect].forEach(select => {
+                select.innerHTML = '<option value="">Choisissez une Filière</option>';
+                filieres.forEach(filiere => {
+                    const option = document.createElement('option');
+                    option.value = filiere.name;
+                    option.textContent = filiere.name;
+                    select.appendChild(option);
+                });
             });
         }
 
-        function updateProfMatieres() {
-            const profSelect = document.getElementById('prof-filieres');
-            const matieresSelect = document.getElementById('prof-matieres');
-            const selectedFiliere = profSelect.value;
-
-            const filiere = filieres.find(f => f.name === selectedFiliere);
-            if (filiere) {
-                matieresSelect.innerHTML = '';
-                filiere.matieres.forEach(matiere => {
-                    const option = document.createElement('option');
-                    option.value = matiere;
-                    option.textContent = matiere;
-                    matieresSelect.appendChild(option);
-                });
-            }
-        }
-
-        document.getElementById('prof-filieres').addEventListener('change', updateProfMatieres);
-
-        // Initialize the options for the dropdowns
+        // Initialize
         updateFiliereOptions();
     </script>
 </body>
