@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Professeur</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile">
+                <img src="profile.jpg" alt="Photo de Profil" class="profile-img">
+                <button onclick="viewProfile()">Mon Profil</button>
+            </div>
+        </header>
+        <h1>Dashboard Professeur</h1>
+        
+        <!-- Liste des Filières enseignées -->
+        <section>
+            <h2>Filières Enseignées</h2>
+            <ul class="filiere-list">
+                <li>
+                    Génie Informatique
+                    <button onclick="viewExams('genie-info')">Voir les Examens</button>
+                </li>
+                <li>
+                    Génie Mécanique
+                    <button onclick="viewExams('genie-meca')">Voir les Examens</button>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Liste des examens pour une filière -->
+        <section id="exam-section" class="hidden">
+            <h2>Examens - <span id="filiere-title"></span></h2>
+            <ul class="exam-list">
+                <li class="exam passed">
+                    <span>Algorithmes - Passé</span>
+                    <button onclick="viewExamDetails('1')">Voir Infos</button>
+                </li>
+                <li class="exam upcoming">
+                    <span>Structures de Données - À venir</span>
+                    <button onclick="editExam('2')">Modifier</button>
+                </li>
+            </ul>
+            <button><a href="add-exam.html">Créer un Examen</a></button>
+        </section>
+    </div>
+
+    <script>
+        // Afficher les examens pour une filière sélectionnée
+        function viewExams(filiere) {
+            document.getElementById('filiere-title').innerText = filiere;
+            document.getElementById('exam-section').classList.remove('hidden');
+        }
+
+        // Fonction pour afficher les détails d'un examen passé
+        function viewExamDetails(examId) {
+            alert("Affichage des détails de l'examen " + examId);
+        }
+
+        // Fonction pour modifier un examen à venir
+        function editExam(examId) {
+            alert("Modification de l'examen " + examId);
+        }
+
+        // Fonction pour créer un nouvel examen
+        function createExam() {
+            alert("Création d'un nouvel examen");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Examen</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Ajouter un Examen</h1>
+        <form>
+            <label for="exam-title">Titre de l'Examen</label>
+            <input type="text" id="exam-title" name="exam-title" required>
+            
+            <label for="exam-date">Date de l'Examen</label>
+            <input type="date" id="exam-date" name="exam-date" required>
+            
+            <label for="exam-time">Heure de l'Examen</label>
+            <input type="time" id="exam-time" name="exam-time" required>
+            
+            <label for="exam-filiere">Filière</label>
+            <select id="exam-filiere" name="exam-filiere">
+                <option value="genie-info">Génie Informatique</option>
+                <option value="genie-meca">Génie Mécanique</option>
+                <option value="genie-civil">Génie Civil</option>
+            </select>
+            
+            <button type="submit">Ajouter</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+header{
+    display :flex ;
+    justify-content: flex-end;
+}
+.profile{
+    display: flex;
+    align-items: center;
+}
+.profile-img{
+    margin-right: 10px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #444;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.exam-list .exam {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.exam.passed {
+    background-color: #e9ecef;
+    color: #6c757d;
+}
+
+.exam.upcoming {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.hidden {
+    display: none;
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Étudiant</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Ajouter un Étudiant</h1>
+        <form>
+            <label for="student-name">Nom de l'Étudiant</label>
+            <input type="text" id="student-name" name="student-name" required>
+            
+            <label for="student-email">Email</label>
+            <input type="email" id="student-email" name="student-email" required>
+            
+            <label for="student-filiere">Filière</label>
+            <select id="student-filiere" name="student-filiere">
+                <option value="genie-info">Génie Informatique</option>
+                <option value="genie-meca">Génie Mécanique</option>
+                <option value="genie-civil">Génie Civil</option>
+            </select>
+            
+            <button type="submit">Ajouter</button>
+        </form>
+    </div>
+</body>
+</html>

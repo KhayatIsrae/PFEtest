@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Étudiant</title>
+    <link rel="stylesheet" href="styyle.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile">
+                <img src="profile.jpg" alt="Photo de Profil" class="profile-img">
+                <button onclick="viewProfile()">Mon Profil</button>
+            </div>
+        </header>
+
+        <section>
+            <h1>Examen - Filière Génie Informatique</h1>
+            <ul class="exam-list">
+                <li class="exam" onclick="viewExamDetails('algorithmes')">Algorithmes</li>
+                <li class="exam" onclick="viewExamDetails('structures-donnees')">Structures de Données</li>
+            </ul>
+        </section>
+
+        <section id="exam-details" style="display:none;">
+            <h2 id="exam-title"></h2>
+            <p id="exam-date"></p>
+            <p id="exam-time-left"></p>
+            <button id="scan-btn" class="scan-btn" onclick="scanQRCode()">Scanner QR Code</button>
+        </section>
+    </div>
+
+    <script>
+        // Détails des examens (exemple de données)
+        const exams = {
+            algorithmes: {
+                title: 'Algorithmes',
+                date: '2024-12-18 09:00',
+                timeLeft: 'Temps restant: 2h 15m',
+                canScan: true
+            },
+            'structures-donnees': {
+                title: 'Structures de Données',
+                date: '2024-12-19 14:00',
+                timeLeft: 'Temps restant: 1h 45m',
+                canScan: false
+            }
+        };
+
+        // Fonction pour afficher les détails de l'examen
+        function viewExamDetails(examId) {
+            const exam = exams[examId];
+
+            // Afficher les détails de l'examen
+            document.getElementById('exam-title').textContent = exam.title;
+            document.getElementById('exam-date').textContent = 'Date: ' + exam.date;
+            document.getElementById('exam-time-left').textContent = exam.timeLeft;
+
+            // Si l'examen est disponible pour scanner le QR Code, activer le bouton
+            const scanBtn = document.getElementById('scan-btn');
+            if (exam.canScan) {
+                scanBtn.style.display = 'inline-block';
+            } else {
+                scanBtn.style.display = 'none';
+            }
+
+            // Afficher la section des détails de l'examen
+            document.getElementById('exam-details').style.display = 'block';
+        }
+
+        // Fonction pour scanner le QR Code
+        function scanQRCode() {
+            alert("Scanner le QR Code...");
+        }
+
+        // Fonction pour accéder au profil de l'étudiant
+        function viewProfile() {
+            alert("Accès au profil de l'étudiant...");
+        }
+    </script>
+</body>
+</html>

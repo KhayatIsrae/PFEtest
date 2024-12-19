@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de Gestion - Admin</title>
+    <link rel="stylesheet" href="stil.css">
+</head>
+<body>
+    <header>
+        <h1>Gestion des Utilisateurs et Filières</h1>
+        <nav>
+            <ul>
+                <li><a href="#professors">Professeurs</a></li>
+                <li><a href="#students">Étudiants</a></li>
+                <li><a href="#courses">Filières</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Gestion des Professeurs -->
+        <section id="professors">
+            <h2>Gestion des Professeurs</h2>
+            <button class="btn" onclick="openForm('addProfessor')">Ajouter un Professeur</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Filière</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Les données des professeurs seront ici -->
+                    <tr>
+                        <td>Jean Dupont</td>
+                        <td>jean.dupont@mail.com</td>
+                        <td>Génie Informatique</td>
+                        <td>
+                            <button class="btn" onclick="openForm('editProfessor')">Modifier</button>
+                            <button class="btn" onclick="deleteItem('professor')">Supprimer</button>
+                        </td>
+                    </tr>
+                    <!-- Ajouter d'autres professeurs ici -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Gestion des Étudiants -->
+        <section id="students">
+            <h2>Gestion des Étudiants</h2>
+            <button class="btn" onclick="openForm('addStudent')">Ajouter un Étudiant</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Filière</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Les données des étudiants seront ici -->
+                    <tr>
+                        <td>Marie Dubois</td>
+                        <td>marie.dubois@mail.com</td>
+                        <td>Génie Informatique</td>
+                        <td>
+                            <button class="btn" onclick="openForm('editStudent')">Modifier</button>
+                            <button class="btn" onclick="deleteItem('student')">Supprimer</button>
+                        </td>
+                    </tr>
+                    <!-- Ajouter d'autres étudiants ici -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Gestion des Filières -->
+        <section id="courses">
+            <h2>Gestion des Filières</h2>
+            <button class="btn" onclick="openForm('addCourse')">Ajouter une Filière</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom de la Filière</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Les données des filières seront ici -->
+                    <tr>
+                        <td>Génie Informatique</td>
+                        <td>Formation en informatique et développement.</td>
+                        <td>
+                            <button class="btn" onclick="openForm('editCourse')">Modifier</button>
+                            <button class="btn" onclick="deleteItem('course')">Supprimer</button>
+                        </td>
+                    </tr>
+                    <!-- Ajouter d'autres filières ici -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- Formulaire d'ajout/modification (popup) -->
+    <div id="formPopup" class="form-popup">
+        <form action="#" method="post" class="form-container">
+            <h3>Formulaire</h3>
+            <label for="name">Nom</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+            <label for="filiere">Filière</label>
+            <input type="text" id="filiere" name="filiere" required>
+            <button type="submit" class="btn">Soumettre</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Annuler</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<script>
+    // Fonction pour ouvrir le formulaire d'ajout/modification
+function openForm(formType) {
+    document.getElementById('formPopup').style.display = 'flex';
+}
+
+// Fonction pour fermer le formulaire
+function closeForm() {
+    document.getElementById('formPopup').style.display = 'none';
+}
+
+// Fonction pour supprimer un élément
+function deleteItem(itemType) {
+    // Logique pour supprimer l'élément (Professeur, Étudiant ou Filière)
+    if (confirm("Êtes-vous sûr de vouloir supprimer cet " + itemType + "?")) {
+        // Code pour supprimer l'élément
+        alert(itemType + " supprimé !");
+    }
+}
+
+</script>

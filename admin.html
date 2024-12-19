@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            font-weight: bold;
+        }
+
+        .tab.active {
+            background-color: #fff;
+            border-bottom: 1px solid #fff;
+        }
+
+        .tab-content {
+            display: none;
+            border: 1px solid #ccc;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input, select, textarea, button {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .multi-select {
+            width: 100%;
+            height: 120px;
+        }
+
+        .delete-btn {
+            background-color: #FF0000;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .delete-btn:hover {
+            background-color: #cc0000;
+        }
+
+        .matiere-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .matiere-item + .matiere-item {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+        
+        <!-- Tabs -->
+        <div class="tabs">
+            <div class="tab active" data-tab="tab-accueil">Accueil</div>
+            <div class="tab" data-tab="tab-filiere">Gestion des Filières</div>
+            <div class="tab" data-tab="tab-prof">Gestion des Professeurs</div>
+            <div class="tab" data-tab="tab-student">Gestion des Étudiants</div>
+        </div>
+
+        <!-- Tab Content -->
+        <!-- Accueil Tab -->
+        <div id="tab-accueil" class="tab-content active">
+            <h2>Bienvenue sur le Tableau de Bord</h2>
+            <p>Utilisez ce tableau de bord pour gérer les filières, les professeurs et les étudiants. Sélectionnez une option dans le menu ci-dessus pour commencer.</p>
+            <p>Vous pouvez ajouter des matières aux filières, attribuer des professeurs aux matières, et bien plus encore.</p>
+        </div>
+
+        <!-- Gestion des Filières -->
+        <div id="tab-filiere" class="tab-content">
+            <h2>Gérer les Filières</h2>
+            <label for="filiere-name">Nom de la Filière</label>
+            <input type="text" id="filiere-name" placeholder="Saisir le nom de la filière" required>
+
+            <label for="filiere-students">Nombre d'Étudiants</label>
+            <input type="number" id="filiere-students" placeholder="Nombre d'étudiants" required>
+
+            <label for="filiere-matieres">Matières</label>
+            <div id="filiere-matieres-container">
+                <input type="text" id="matiere-name" placeholder="Ajouter une matière" required>
+                <button type="button" onclick="addMatiere()">Ajouter Matière</button>
+            </div>
+            <ul id="matiere-list"></ul>
+
+            <button type="button" onclick="addFiliere()">Ajouter la Filière</button>
+        </div>
+
+        <!-- Gestion des Professeurs -->
+        <div id="tab-prof" class="tab-content">
+            <h2>Gérer les Professeurs</h2>
+            <label for="prof-name">Nom du Professeur</label>
+            <input type="text" id="prof-name" placeholder="Saisir le nom complet" required>
+
+            <label for="prof-email">Adresse Mail</label>
+            <input type="email" id="prof-email" placeholder="Saisir l'adresse email" required>
+
+            <label for="prof-password">Mot de Passe</label>
+            <input type="password" id="prof-password" placeholder="Créer un mot de passe" required>
+
+            <label for="prof-filieres">Filières Enseignées</label>
+            <select id="prof-filieres" required>
+                <!-- Filières dynamically populated here -->
+            </select>
+
+            <label for="prof-matieres">Matières Enseignées</label>
+            <select id="prof-matieres" required>
+                <!-- Matières dynamically populated here -->
+            </select>
+
+            <label for="prof-phone">Numéro de Téléphone</label>
+            <input type="text" id="prof-phone" placeholder="Saisir le numéro de téléphone" required>
+
+            <button type="button" onclick="addProf()">Ajouter le Professeur</button>
+        </div>
+
+        <!-- Gestion des Étudiants -->
+        <div id="tab-student" class="tab-content">
+            <h2>Gérer les Étudiants</h2>
+            <label for="student-name">Nom Complet</label>
+            <input type="text" id="student-name" placeholder="Saisir le nom complet" required>
+
+            <label for="student-filiere">Filière</label>
+            <select id="student-filiere" required>
+                <!-- Filières dynamically populated here -->
+            </select>
+
+            <label for="student-email">Adresse Mail</label>
+            <input type="email" id="student-email" placeholder="Créer une adresse email" required>
+
+            <label for="student-password">Mot de Passe</label>
+            <input type="password" id="student-password" placeholder="Créer un mot de passe" required>
+
+            <button type="button" onclick="addStudent()">Ajouter l'Étudiant</button>
+        </div>
+    </div>
+
+    <script>
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(tc => tc.classList.remove('active'));
+
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+
+        let filieres = [
+            { name: 'Informatique', matieres: ['Algèbre', 'Programmation', 'Bases de données'] },
+            { name: 'Mathématiques', matieres: ['Calcul', 'Algèbre', 'Géométrie'] },
+            { name: 'Physique', matieres: ['Mécanique', 'Thermodynamique', 'Electromagnétisme'] }
+        ];
+
+        function addFiliere() {
+            const name = document.getElementById('filiere-name').value;
+            const students = document.getElementById('filiere-students').value;
+            const matieres = Array.from(document.getElementById('matiere-list').children).map(li => li.textContent);
+
+            if (name && students && matieres.length > 0) {
+                filieres.push({ name, matieres });
+                updateFiliereOptions();
+                alert(`Filière "${name}" ajoutée avec succès!`);
+                resetFiliereForm();
+            }
+        }
+
+        function addMatiere() {
+            const matiereName = document.getElementById('matiere-name').value;
+            if (matiereName) {
+                const matiereList = document.getElementById('matiere-list');
+                const li = document.createElement('li');
+                li.textContent = matiereName;
+                li.classList.add('matiere-item');
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Supprimer';
+                deleteButton.classList.add('delete-btn');
+                deleteButton.onclick = () => deleteMatiere(matiereName);
+                li.appendChild(deleteButton);
+                matiereList.appendChild(li);
+                document.getElementById('matiere-name').value = ''; // Clear input
+            }
+        }
+
+        function deleteMatiere(matiereName) {
+            const matiereList = document.getElementById('matiere-list');
+            const items = matiereList.getElementsByClassName('matiere-item');
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].textContent.includes(matiereName)) {
+                    matiereList.removeChild(items[i]);
+                    break;
+                }
+            }
+        }
+
+        function resetFiliereForm() {
+            document.getElementById('filiere-name').value = '';
+            document.getElementById('filiere-students').value = '';
+            document.getElementById('matiere-list').innerHTML = '';
+        }
+
+        function updateFiliereOptions() {
+            const profSelect = document.getElementById('prof-filieres');
+            const studentSelect = document.getElementById('student-filiere');
+            profSelect.innerHTML = '';
+            studentSelect.innerHTML = '';
+
+            filieres.forEach(filiere => {
+                const option = document.createElement('option');
+                option.value = filiere.name;
+                option.textContent = filiere.name;
+                profSelect.appendChild(option);
+
+                const studentOption = option.cloneNode(true);
+                studentSelect.appendChild(studentOption);
+            });
+        }
+
+        function updateProfMatieres() {
+            const profSelect = document.getElementById('prof-filieres');
+            const matieresSelect = document.getElementById('prof-matieres');
+            const selectedFiliere = profSelect.value;
+
+            const filiere = filieres.find(f => f.name === selectedFiliere);
+            if (filiere) {
+                matieresSelect.innerHTML = '';
+                filiere.matieres.forEach(matiere => {
+                    const option = document.createElement('option');
+                    option.value = matiere;
+                    option.textContent = matiere;
+                    matieresSelect.appendChild(option);
+                });
+            }
+        }
+
+        document.getElementById('prof-filieres').addEventListener('change', updateProfMatieres);
+
+        // Initialize the options for the dropdowns
+        updateFiliereOptions();
+    </script>
+</body>
+</html>
